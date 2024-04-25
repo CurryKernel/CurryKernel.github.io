@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="第一题 满二叉搜索树查找给定2n - 1个不同的整数(1 &le; n &le; 10，n为整数),构建一棵平衡满二叉搜索树二叉搜索树定义如下:  节点的左子树只包含小于当前节点的数。  节点的右子树只包含大于当前节点的数。  所有左子树和右子树自身必须也是二叉搜索树。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="华为校招笔试0424">
+<meta property="og:url" content="http://example.com/2024/04/25/%E5%8D%8E%E4%B8%BA%E6%A0%A1%E6%8B%9B%E7%AC%94%E8%AF%950424/index.html">
+<meta property="og:site_name" content="不会写代码的柯柯">
+<meta property="og:description" content="第一题 满二叉搜索树查找给定2n - 1个不同的整数(1 &le; n &le; 10，n为整数),构建一棵平衡满二叉搜索树二叉搜索树定义如下:  节点的左子树只包含小于当前节点的数。  节点的右子树只包含大于当前节点的数。  所有左子树和右子树自身必须也是二叉搜索树。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2024-04-24T16:51:45.000Z">
+<meta property="article:modified_time" content="2024-04-25T03:57:30.000Z">
+<meta property="article:author" content="不会写代码的柯柯">
+<meta property="article:tag" content="校招">
+<meta property="article:tag" content="华为">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2024/04/25/%E5%8D%8E%E4%B8%BA%E6%A0%A1%E6%8B%9B%E7%AC%94%E8%AF%950424/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>华为校招笔试0424 | 不会写代码的柯柯</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Navigationsleiste an/ausschalten">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">不会写代码的柯柯</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/25/%E5%8D%8E%E4%B8%BA%E6%A0%A1%E6%8B%9B%E7%AC%94%E8%AF%950424/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/lqpic.jpg">
+      <meta itemprop="name" content="柯柯">
+      <meta itemprop="description" content="永远相信美好的事情即将发生！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不会写代码的柯柯">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          华为校招笔试0424
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建于：2024-04-25 00:51:45 / 更新于：11:57:30" itemprop="dateCreated datePublished" datetime="2024-04-25T00:51:45+08:00">2024-04-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">算法题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="第一题-满二叉搜索树查找"><a href="#第一题-满二叉搜索树查找" class="headerlink" title="第一题 满二叉搜索树查找"></a>第一题 满二叉搜索树查找</h2><p>给定2<sup>n</sup> - 1个不同的整数(1 &le; n &le; 10，n为整数),构建一棵平衡满二叉搜索树<br>二叉搜索树定义如下:</p>
+<ol>
+<li><p>节点的左子树只包含小于当前节点的数。</p>
+</li>
+<li><p>节点的右子树只包含大于当前节点的数。</p>
+</li>
+<li><p>所有左子树和右子树自身必须也是二叉搜索树。</p>
+<!-- 在需要阶段的地方加入下面这句，或者加入description: 这是显示在首页的概述，正文内容均会被隐藏。 -->
+<span id="more"></span> 
+<p>例如 7个数字 ‘1234567’ 构建的满二叉搜索树如下所示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    4</span><br><span class="line"> 2     6</span><br><span class="line">1 3   5 7</span><br></pre></td></tr></table></figure>
+<p><strong>输入</strong></p>
+<p> 输入分2行, 第一行为2^n-1个未排序的整数，空格分隔,用于构建二叉搜索树,其中1&lt;&#x3D;n&lt;&#x3D;10，第二行为待查找的整数。所有输入整数的取值范围为[-32768，32767]。</p>
+</li>
+</ol>
+<p><strong>输出</strong></p>
+<pre><code>搜索的路径和结果 路径从根节点开始,用S表示,查找左树用L表示，查找右树使用R表示，找到后使用Y表示，最终未找到使用N表示。
+</code></pre>
+<p><strong>样例</strong></p>
+<pre><code>样例1：
+输入：
+2 1 3 7 5 6 4
+6
+输出
+SRY
+解释：从根节点开始，所以路径的第一部分为S，待查找数为6，大于4，所以要查找右树，路径增加R,正好找到。所以最后增加Y,最终输出SRY
+样例2：
+输入：
+4 2 1 3 6 5 7
+5
+输出：
+SRLY
+解释：从根节点开始,一次往右树,往左树查找,找到结果5,因此最终SRLY
+样例3：
+输入：
+1 2 3 4 5 6 7
+8
+输出：
+SRRN
+解释:从根节点开始查找，标记s，待查找数8比4大,所以查找右树，标记R, 8比6还大，继续查找右树标记R，8比右树节点7还大,但已经到了叶子,没有找到,因此最终标记SRRN
+</code></pre>
+<p><strong>思路和代码</strong></p>
+<p>本质就是一个二叉搜索树的遍历，不过我们不用建立二叉树，可以用二分查找来代替，需要注意的是，访问到叶子节点后，如果还没有找到，此时并不增加路径。</p>
+<p><strong>代码逻辑解释</strong></p>
+<ol>
+<li><p><strong>输入数据</strong>：</p>
+<ul>
+<li>使用 <code>getline(cin, s)</code> 从输入中读取一行字符串，这一行包含了 <code>2^n - 1</code> 个未排序的整数。</li>
+<li>通过 <code>stringstream</code> 和 <code>while</code> 循环，将这些字符串形式的整数转换为实际的整数，并存储在向量 <code>v</code> 中。</li>
+<li>然后从第二行输入中读取一个目标整数 <code>target</code>。</li>
+</ul>
+</li>
+<li><p><strong>构建平衡满二叉搜索树</strong>：</p>
+<ul>
+<li>平衡满二叉搜索树要求所有节点的左右子树是平衡的。对于给定的整数集合，这种树结构可以通过排序后取中间值作为根节点，然后递归地在左右子树中重复这个过程来实现。</li>
+<li>在这段代码中，使用 <code>sort(v.begin(), v.end())</code> 将输入的整数按升序排序。</li>
+</ul>
+</li>
+<li><p><strong>二叉搜索树中的搜索</strong>：</p>
+<ul>
+<li>通过二分查找在 BST 中搜索目标 <code>target</code>。二分查找的方式可以自然模拟 BST 的搜索过程。</li>
+<li>设置 <code>l</code> 为左边界，<code>r</code> 为右边界，通过 <code>while (l &lt;= r)</code> 循环执行搜索：<ul>
+<li><code>m</code> 是当前中间位置 (<code>m = (l + r) / 2</code>)。</li>
+<li>如果 <code>v[m]</code> 与目标 <code>target</code> 相等，路径 <code>ans</code> 加上 <code>Y</code>，表示找到目标，跳出循环。</li>
+<li>如果 <code>v[m]</code> 大于目标，路径 <code>ans</code> 加上 <code>L</code>，表示向左子树搜索，调整右边界 <code>r = m - 1</code>。</li>
+<li>如果 <code>v[m]</code> 小于目标，路径 <code>ans</code> 加上 <code>R</code>，表示向右子树搜索，调整左边界 <code>l = m + 1</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>结果处理</strong>：</p>
+<ul>
+<li>若搜索路径的最后一个字符不是 <code>Y</code>，则添加 <code>N</code>，表示未找到目标。</li>
+<li>输出搜索路径。</li>
+</ul>
+</li>
+</ol>
+<p><strong>代码</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; v;</span><br><span class="line"><span class="type">int</span> target;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    stringstream ss;</span><br><span class="line">    string s, t;</span><br><span class="line">    <span class="built_in">getline</span>(cin, s);</span><br><span class="line">    ss &lt;&lt; s;</span><br><span class="line">    v.<span class="built_in">clear</span>();</span><br><span class="line">    <span class="keyword">while</span> (ss &gt;&gt; t) &#123;</span><br><span class="line">        v.<span class="built_in">push_back</span>(<span class="built_in">stoi</span>(t));</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// getchar();</span></span><br><span class="line">    cin &gt;&gt; target;</span><br><span class="line">    <span class="built_in">sort</span>(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>());</span><br><span class="line">    string ans = <span class="string">&quot;S&quot;</span>;</span><br><span class="line">    <span class="type">int</span> l = <span class="number">0</span>, r = v.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> d = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">        <span class="type">int</span> m = (l + r) / <span class="number">2</span>;</span><br><span class="line">        d++;</span><br><span class="line">        <span class="keyword">if</span> (v[m] == target) &#123; ans += <span class="string">&quot;Y&quot;</span>; <span class="keyword">break</span>; &#125;</span><br><span class="line">        <span class="keyword">if</span> (v[m] &gt; target) &#123;</span><br><span class="line">            <span class="keyword">if</span> ((<span class="number">1</span> &lt;&lt; (d)) &gt; v.<span class="built_in">size</span>()) <span class="keyword">break</span>;</span><br><span class="line">            ans += <span class="string">&quot;L&quot;</span>; r = m - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> ((<span class="number">1</span> &lt;&lt; (d)) &gt; v.<span class="built_in">size</span>()) <span class="keyword">break</span>;</span><br><span class="line">            ans += <span class="string">&quot;R&quot;</span>; l = m + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (ans.<span class="built_in">back</span>() != <span class="string">&#x27;Y&#x27;</span>) ans += <span class="string">&quot;N&quot;</span>;</span><br><span class="line">    cout &lt;&lt; ans;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="第二题-足球队员射门能力排序"><a href="#第二题-足球队员射门能力排序" class="headerlink" title="第二题 足球队员射门能力排序"></a>第二题 足球队员射门能力排序</h2><p>球队有<code>n</code>个足球队员参与<code>m</code>次射门训练，每次射门进球用1表示，射失则用0表示，依据如下规则对该<code>n</code>个队员的射门能力做排序 1、进球总数更多的队员射门能力更强 2、若进球总数—样多，则比较最多—次连续进球的个数，最多的队员能力更强 3、若最多一次连续进球的个数一样多，则比较第一次射失的先后顺序，其中后射失的队员更强，若第一次射失顺序相同，则按继续比较第二次射失的顺序，后丢球的队员能术更强，依次类推 4、若前3个规则排序后还能力相等，则队员编号更小的能力更强</p>
+<p><strong>输入</strong></p>
+<pre><code>第1行，足球队员数n，射门训练次数m。(队员编号从1开始，依次递增) 第2行，第1~n个队员从第1到m次训练的进球情况，每个队员进球情况为连续的1和0的组合，不同队员用空格分隔n和m均为正整数。
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code>射门能力从强到弱的队员编号,用空格分隔    
+</code></pre>
+<p><strong>注意：0 &lt; n &le; 10<sup>3</sup>, 0 &lt; m &le; 10<sup>3</sup></strong></p>
+<p><strong>样例</strong></p>
+<pre><code>输入：
+4 5
+11100 0011110111 01111
+输出：
+4 3 1 2
+解释：4个队员，射门训练5次，队员3和4进球数均为4个，比队员1和2的3个更多,队员3连续进球数最多一次为3个,而队员4最大为4，因此队员4射门能力强于队员3,另外队员2比队员1先丢球，因此队员1射门能力强于队员2，排序为4312
+输入：
+2 10
+1011100111 1011101101
+输出：
+2 1
+解释：2个队员，射门训练10次，两个队员的进球总数均为7个,连续进球最多的均为3个，且第前两次丢球顺序均为第二次和第6次训练射门，而队员2第三次丢球为第9次训练,队员2为第7次训练，因此队员2的射门能力强于队员1,排序为21
+</code></pre>
+<p><strong>思路和代码</strong><br>本质就是一个排序问题，但是排序的规则比较复杂，需要预处理数据，得到每个人的进球数、最多的连续进球个数、失球顺序，然后排序的时候按照题目要求进行返回即可。</p>
+<p><strong>代码逻辑解释</strong></p>
+<p>这段代码根据特定的规则对一组足球队员的射门能力进行排序。排序规则包括进球总数、最长连续进球数、第一次射失顺序等。</p>
+<ol>
+<li><p><strong>输入数据</strong>：</p>
+<ul>
+<li>首先读取 <code>n</code> 和 <code>m</code>，表示足球队员数量和射门训练次数。</li>
+<li>创建向量 <code>goals</code> 和 <code>seq</code>，分别记录每个队员的进球总数和最长连续进球数。</li>
+<li><code>fs</code> 用于记录每个队员的射失位置。</li>
+</ul>
+</li>
+<li><p><strong>计算队员的进球总数、最长连续进球数、射失顺序</strong>：</p>
+<ul>
+<li>遍历每个队员，读取其射门结果字符串 <code>s</code>。</li>
+<li>使用 <code>g</code> 统计进球总数，用 <code>cur_s</code> 统计当前连续进球数，<code>mx_s</code> 记录最长连续进球数。</li>
+<li>遍历射门结果 <code>s</code>，如果进球 (即 <code>s[j] == &#39;1&#39;</code>)，则增加 <code>cur_s</code>；否则，记录射失位置并重置 <code>cur_s</code>。</li>
+<li>将 <code>fs[i]</code> 记录每个队员的射失位置。</li>
+<li>更新 <code>goals[i]</code> 为 <code>g</code>，<code>seq[i]</code> 为 <code>mx_s</code>。</li>
+</ul>
+</li>
+<li><p><strong>对队员进行排序</strong>：</p>
+<ul>
+<li>创建 <code>idx</code> 向量，用于存储队员的索引。</li>
+<li>按照给定的排序规则对 <code>idx</code> 进行排序：<ol>
+<li><strong>进球总数</strong>：如果 <code>goals[a]</code> 大于 <code>goals[b]</code>，则 <code>a</code> 能力更强，反之亦然。</li>
+<li><strong>最长连续进球数</strong>：如果 <code>seq[a]</code> 大于 <code>seq[b]</code>，则 <code>a</code> 能力更强，反之亦然。</li>
+<li><strong>射失顺序</strong>：对 <code>fs[a]</code> 和 <code>fs[b]</code> 中的射失位置进行比较，如果 <code>fs[a][j]</code> 大于 <code>fs[b][j]</code>，则 <code>a</code> 更强，反之亦然。</li>
+<li><strong>队员编号</strong>：如果以上都相同，按编号从小到大排序。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>输出排序后的队员编号</strong>：</p>
+<ul>
+<li>遍历排序后的 <code>idx</code> 向量，输出对应的队员编号。</li>
+<li>队员编号从 1 开始，所以输出 <code>idx[i] + 1</code>。</li>
+<li>在输出时用空格分隔，如果是最后一个元素，则不输出空格。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n, m; cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">goals</span><span class="params">(n, <span class="number">0</span>)</span>, <span class="title">seq</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">fs</span>(n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        string s; cin &gt;&gt; s;</span><br><span class="line">        <span class="type">int</span> g = <span class="number">0</span>, mx_s = <span class="number">0</span>, cur_s = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; ++j) &#123;</span><br><span class="line">            g += (s[j] == <span class="string">&#x27;1&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span> (s[j] == <span class="string">&#x27;1&#x27;</span>) ++cur_s;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                fs[i].<span class="built_in">push_back</span>(j);</span><br><span class="line">                mx_s = <span class="built_in">max</span>(mx_s, cur_s); cur_s = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        goals[i] = g; seq[i] = <span class="built_in">max</span>(mx_s, cur_s);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">idx</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) idx[i] = i;</span><br><span class="line">    <span class="built_in">sort</span>(idx.<span class="built_in">begin</span>(), idx.<span class="built_in">end</span>(), [&amp;](<span class="keyword">auto</span>&amp; a, <span class="keyword">auto</span>&amp; b) &#123;</span><br><span class="line">        <span class="comment">// 进球数</span></span><br><span class="line">    <span class="keyword">if</span> (goals[a] &gt; goals[b]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (goals[a] &lt; goals[b]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">// 最多连续进球数</span></span><br><span class="line">    <span class="keyword">if</span> (seq[a] &gt; seq[b]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (seq[a] &lt; seq[b]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">// 射失顺序</span></span><br><span class="line">    <span class="type">int</span> sz = fs[a].<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; sz; ++j) &#123;</span><br><span class="line">        <span class="keyword">if</span> (fs[a][j] &gt; fs[b][j]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (fs[a][j] &lt; fs[b][j]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="keyword">return</span> a &lt; b;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        cout &lt;&lt; idx[i] + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (i != n - <span class="number">1</span>) cout &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="第三题-找到内聚值最大的微服务群组"><a href="#第三题-找到内聚值最大的微服务群组" class="headerlink" title="第三题 找到内聚值最大的微服务群组"></a>第三题 找到内聚值最大的微服务群组</h2><p>开发团队为了调研微服务调用情况,对<code>n</code>个微服务调用数据进行了采集分析,微服务使用数字<code>0</code>至<code>n-1</code>进行编号，给你一个下标从<code>0</code>开始的数组<code>edges</code> , 其中<code>edges[i]</code>表示存在一条从微服务<code>i</code>到微服务<code>edges[i]</code>的接口调用。</p>
+<p>我们将形成<code>1</code>个环的多个微服务称为微服务群组，一个微服务群组的所有微服务数量为<code>L</code>，能够访问到该微服务群组的微服务数量为<code>V</code>,这个微服务群组的内聚值<code>H=L-V</code>。</p>
+<p>已知提供的数据中有<code>1</code>个或多个微服务群组，请按照内聚值<code>H</code>的结果从大到小的顺序对所有微服务群组(<code>H</code>相等时，取环中最大的数进行比较)排序，输出排在第一的做服务群组，输出时每个微服务群组输出的起始编号为环中最小的数。</p>
+<p><strong>输入</strong></p>
+<p>分为两行输入: 第一行为<code>n</code>,表示有<code>n</code>个微服务 第二行为数组<code>edges</code>,其中<code>edges[i]</code>表示存在一条从微服务<code>i</code>到微服务<code>edges[i]</code>的接口调用，数字以空格分隔<br>输入范围说明: <strong>n &#x3D;&#x3D; edges.length, 2 &le; n &lt;&#x3D; 10<sup>5</sup>, 0 &le; edges[i] &le; n-1, edges[i] !&#x3D;i</strong></p>
+<p><strong>输出</strong></p>
+<p>输出排在第一的微服务群组的编号数组，按照环的访问顺序输出，起始编号为环中最小的数,数字以空格分隔</p>
+<p><strong>样例</strong></p>
+<pre><code>输入：
+4
+3 3 0 1
+输出：
+0 3 2
+输入：
+12
+2 6 10 1 6 0 3 0 5 4 5 8
+输出：
+0 2 10 5
+</code></pre>
+<p><strong>思路和代码</strong></p>
+<p>题意解释：</p>
+<ul>
+<li>微服务调用：给定 <code>n</code> 个微服务，通过 <code>edges</code> 数组表示微服务之间的调用关系，其中 <code>edges[i]</code> 表示从微服务 <code>i</code> 调用微服务 <code>edges[i]</code>。</li>
+<li>环：如果一个微服务通过一系列调用最终又回到自己，说明它处于一个环中。</li>
+<li>内聚值：设微服务环中的节点数为 <code>L</code>，可直接访问到该环的节点数为 <code>V</code>，则内聚值 <code>H = L - V</code>。根据题意，要找到内聚值最大的微服务环。</li>
+</ul>
+<p>代码逻辑：</p>
+<ol>
+<li><p>输入数据：</p>
+<ul>
+<li>从输入中读取 <code>n</code> 表示微服务数量。</li>
+<li>创建 <code>edges</code> 数组，保存每个微服务的调用目标。</li>
+<li>创建 <code>in</code> 数组，记录每个节点的入度（即有多少其他节点指向这个节点）。</li>
+</ul>
+</li>
+<li><p>找到出度为零的节点并删除：</p>
+<ul>
+<li>使用 <code>queue</code> 队列，记录所有出度为零的节点，并逐步处理，以删除不在环内的节点。</li>
+<li>对于 <code>in[i] == 0</code> 的节点，添加到队列，并减少相应的 <code>in</code> 值，表示它不再影响其他节点。</li>
+</ul>
+</li>
+<li><p>确定微服务环和内聚值：</p>
+<ul>
+<li><code>cir</code> 是用于存储所有环的向量。</li>
+<li><code>value</code> 记录内聚值。</li>
+<li><code>mx</code> 记录每个环中最大的节点编号。</li>
+<li>遍历 <code>in</code> 数组，找到环并计算内聚值：<ul>
+<li>对于每个 <code>in[i] &gt; 0</code> 的节点（环的开始），使用 <code>path</code> 保存环中的所有节点，并将入度设为 0。</li>
+<li><code>v</code> 是到环前经过的节点数。</li>
+<li><code>mx_no</code> 记录当前环中的最大节点编号。</li>
+</ul>
+</li>
+<li>计算内聚值 <code>value</code> 为环的节点数 <code>L</code> 减去访问环的节点数 <code>V</code>。</li>
+</ul>
+</li>
+<li><p>排序环并输出结果：</p>
+<ul>
+<li><code>idx</code> 是一个索引数组，用于按照内聚值和最大节点编号排序。</li>
+<li>对 <code>idx</code> 数组排序：<ul>
+<li>如果内聚值相等，则按照最大节点编号降序排序。</li>
+</ul>
+</li>
+<li>找到排序后内聚值最大的环，并确定其起始编号为最小节点。</li>
+<li>输出环中所有节点，按照环的访问顺序，从最小节点开始，输出结果。</li>
+</ul>
+</li>
+</ol>
+<p>环的查找(找到内聚值最大的微服务组)：</p>
+<ol>
+<li><p><strong>初始化</strong></p>
+<ul>
+<li><code>cir</code> 是一个二维数组，用于存储找到的所有环。</li>
+<li><code>value</code> 是一维数组，存储每个环的内聚值。</li>
+<li><code>mx</code> 是一维数组，记录每个环中最大的节点编号。</li>
+</ul>
+</li>
+<li><p><strong>查找环</strong></p>
+<ul>
+<li>遍历所有节点，如果 <code>in[i] &gt; 0</code>，这表示该节点可能在一个环中。</li>
+<li>如果这个节点可能属于环：<ul>
+<li>创建一个 <code>path</code> 数组，存储环中的节点。</li>
+<li>将 <code>in[c]</code> 置零，表示这个节点已被处理。</li>
+</ul>
+</li>
+<li><code>v</code> 变量用于记录在进入环之前访问到的节点数量。</li>
+<li><code>mx_no</code> 用于记录当前环中最大的节点编号。</li>
+<li>通过 <code>edges</code> 数组跟踪下一个节点，直到环形成并返回到起点。</li>
+<li>每次找到一个环节点时：<ul>
+<li>将其添加到 <code>path</code> 中。</li>
+<li>更新 <code>v</code> 的值（因为环之前访问的节点数量会增加）。</li>
+<li>检查是否是新的最大节点，并更新 <code>mx_no</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>计算内聚值</strong>：</p>
+<ul>
+<li>对于找到的环，<code>path</code> 保存了环中的所有节点。</li>
+<li>环的大小 <code>L</code> 为 <code>path.size()</code>。</li>
+<li>内聚值 <code>H = L - V</code>，其中 <code>V</code> 是在进入环之前访问到的节点数量。</li>
+<li>将计算的内聚值 <code>H</code> 添加到 <code>value</code> 数组，将 <code>path</code> 添加到 <code>cir</code> 数组，将最大节点编号 <code>mx_no</code> 添加到 <code>mx</code> 数组。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> n; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">edges</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">in</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="comment">// 每个节点的子节点数目</span></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nums</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        cin &gt;&gt; edges[i];</span><br><span class="line">        in[edges[i]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (in[i] == <span class="number">0</span>) q.<span class="built_in">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="type">int</span> sz = q.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">while</span> (sz--) &#123;</span><br><span class="line">            <span class="type">int</span> f = q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">            in[edges[f]]--;</span><br><span class="line">            nums[edges[f]] += nums[f] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (in[edges[f]] == <span class="number">0</span>) &#123;</span><br><span class="line">                q.<span class="built_in">push</span>(edges[f]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; cir;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; value;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; mx;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (in[i] == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="type">int</span> c = i, v = <span class="number">0</span>, mx_no = i;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; path; </span><br><span class="line">        <span class="keyword">while</span> (in[c]) &#123;</span><br><span class="line">            v += nums[c];</span><br><span class="line">            path.<span class="built_in">push_back</span>(c); in[c] = <span class="number">0</span>;</span><br><span class="line">            c = edges[c];</span><br><span class="line">            mx_no = <span class="built_in">max</span>(mx_no, c);</span><br><span class="line">        &#125;</span><br><span class="line">        cir.<span class="built_in">push_back</span>(path);</span><br><span class="line">        mx.<span class="built_in">push_back</span>(mx_no);</span><br><span class="line">        value.<span class="built_in">push_back</span>(path.<span class="built_in">size</span>() - v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">idx</span><span class="params">(value.size())</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; value.<span class="built_in">size</span>(); ++i) idx[i] = i;</span><br><span class="line">    <span class="built_in">sort</span>(idx.<span class="built_in">begin</span>(), idx.<span class="built_in">end</span>(), [&amp;](<span class="keyword">auto</span>&amp; a, <span class="keyword">auto</span>&amp; b) &#123;</span><br><span class="line">    <span class="keyword">return</span> value[a] == value[b] ? mx[a] &gt; mx[b] : value[a] &gt; value[b]; </span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">auto</span>&amp; path = cir[idx[<span class="number">0</span>]];</span><br><span class="line">    <span class="type">int</span> start = *<span class="built_in">min_element</span>(path.<span class="built_in">begin</span>(), path.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; path.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        cout &lt;&lt; start;</span><br><span class="line">        start = edges[start];</span><br><span class="line">        <span class="keyword">if</span> (i != path.<span class="built_in">size</span>() - <span class="number">1</span>) cout &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%A0%A1%E6%8B%9B/" rel="tag"># 校招</a>
+              <a href="/tags/%E5%8D%8E%E4%B8%BA/" rel="tag"># 华为</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/04/18/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%98-%E6%BB%A1%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9F%A5%E6%89%BE"><span class="nav-number">1.</span> <span class="nav-text">第一题 满二叉搜索树查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%A2%98-%E8%B6%B3%E7%90%83%E9%98%9F%E5%91%98%E5%B0%84%E9%97%A8%E8%83%BD%E5%8A%9B%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">第二题 足球队员射门能力排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%A2%98-%E6%89%BE%E5%88%B0%E5%86%85%E8%81%9A%E5%80%BC%E6%9C%80%E5%A4%A7%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%BE%A4%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">第三题 找到内聚值最大的微服务群组</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="柯柯"
+      src="/images/lqpic.jpg">
+  <p class="site-author-name" itemprop="name">柯柯</p>
+  <div class="site-description" itemprop="description">永远相信美好的事情即将发生！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CurryKernel" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CurryKernel" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/kerneld@qq.com" title="E-Mail → kerneld@qq.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">柯柯</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
