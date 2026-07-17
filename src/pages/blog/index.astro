@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<BaseLayout title="博客" description="CurryKernel 的技术博客">
+  <div class="max-w-[768px] mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">📝 博客</h1>
+    <p class="text-gray-400 mb-10">记录学习与思考</p>
+
+    {
+      sortedPosts.length === 0 ? (
+        <p class="text-gray-400 text-center py-20">还没有文章，马上就来～</p>
+      ) : (
+        <div class="flex flex-col gap-4">
+          {sortedPosts.map(post => (
+            <BlogCard post={post} />
+          ))}
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>
