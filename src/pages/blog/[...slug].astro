@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const { title, date, tags } = post.data;
+---
+
+<BaseLayout title={title} description={post.data.description}>
+  <article class="max-w-[768px] mx-auto px-6 py-16">
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-blue-500 mb-8 transition-colors"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      返回博客
+    </a>
+
+    <header class="mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">{title}</h1>
+      <div class="flex items-center gap-4 text-sm text-gray-400">
+        <time datetime={date.toISOString()}>
+          {date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        <div class="flex gap-2">
+          {tags.map(tag => (
+            <span class="px-2 py-0.5 bg-blue-50 text-blue-500 rounded-full text-xs">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </header>
+
+    <div class="prose prose-gray max-w-none prose-headings:text-gray-800 prose-a:text-blue-500 prose-code:text-gray-700 prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-gray-900 prose-pre:text-gray-100">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

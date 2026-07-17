@@ -27,3 +27,27 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Blog article prose */
+.prose h1 { font-size: 2rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: #1f2937; }
+.prose h2 { font-size: 1.5rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.75rem; color: #1f2937;
+  padding-bottom: 0.5rem; border-bottom: 1px solid #e5e7eb; }
+.prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: #1f2937; }
+.prose p { margin-bottom: 1rem; line-height: 1.75; color: #374151; }
+.prose ul, .prose ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+.prose li { margin-bottom: 0.25rem; line-height: 1.75; color: #374151; }
+.prose a { color: #3b82f6; text-decoration: underline; }
+.prose a:hover { color: #2563eb; }
+.prose strong { font-weight: 600; color: #1f2937; }
+.prose code { background: #f3f4f6; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875em;
+  font-family: 'JetBrains Mono', monospace; color: #1f2937; }
+.prose pre { background: #1e293b; color: #e2e8f0; padding: 1.25rem; border-radius: 0.75rem; overflow-x: auto;
+  margin-bottom: 1.5rem; font-size: 0.875rem; line-height: 1.7; }
+.prose pre code { background: transparent; padding: 0; color: inherit; font-size: inherit; }
+.prose blockquote { border-left: 4px solid #3b82f6; padding-left: 1rem; margin: 1rem 0; color: #6b7280;
+  font-style: italic; }
+.prose img { max-width: 100%; border-radius: 0.75rem; margin: 1rem 0; }
+.prose hr { border: none; border-top: 1px solid #e5e7eb; margin: 2rem 0; }
+.prose table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+.prose th { background: #f9fafb; padding: 0.75rem 1rem; text-align: left; font-weight: 600; border: 1px solid #e5e7eb; }
+.prose td { padding: 0.75rem 1rem; border: 1px solid #e5e7eb; }
