@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+---
+
+<BaseLayout title="项目" description="CurryKernel 的项目展示">
+  <div class="max-w-[768px] mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">🚀 项目</h1>
+    <p class="text-gray-400 mb-10">一些在做的开源项目</p>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <ProjectCard
+        title="一二布布桌面宠物"
+        description="桌面悬浮宠物应用，可爱的一二布布在你的桌面上陪伴你"
+        language="JavaScript"
+        url="https://github.com/CurryKernel/yierbubu-desktop"
+      />
+      <ProjectCard
+        title="xmeta"
+        description="C++ 项目"
+        language="C++"
+        url="https://github.com/CurryKernel/xmeta"
+      />
+    </div>
+  </div>
+</BaseLayout>

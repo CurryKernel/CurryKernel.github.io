@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  language: string;
+  url: string;
+}
+
+const { title, description, language, url } = Astro.props;
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="block p-6 bg-white rounded-xl border border-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-blue-400 group"
+>
+  <h3 class="text-lg font-semibold text-gray-800 mb-2 group-hover:text-blue-500 transition-colors">
+    {title}
+  </h3>
+  <p class="text-gray-500 text-sm mb-4 leading-relaxed">{description}</p>
+  <div class="flex items-center gap-2">
+    <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
+      <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+      {language}
+    </span>
+    <svg class="w-4 h-4 text-gray-300 group-hover:text-blue-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+    </svg>
+  </div>
+</a>
