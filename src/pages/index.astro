@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ParticleBg from '../components/ParticleBg.tsx';
+import TypewriterText from '../components/TypewriterText.tsx';
+---
+
+<BaseLayout title="首页">
+  <ParticleBg client:load />
+
+  <div class="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] px-6 text-center">
+    <img
+      src="/images/avatar.gif"
+      alt="Avatar"
+      class="w-28 h-28 rounded-full border-4 border-blue-100 shadow-lg mb-8"
+    />
+
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 h-14">
+      <TypewriterText
+        client:load
+        texts={[
+          "Hi, I'm CurryKernel",
+          '永远相信美好的事情即将发生！',
+        ]}
+      />
+    </h1>
+
+    <p class="text-lg text-gray-500 mb-10">
+      存储系统 &middot; C++ &middot; 分布式
+    </p>
+
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a
+        href="/blog"
+        class="px-6 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition-colors duration-200 shadow-md hover:shadow-lg"
+      >
+        📝 博客
+      </a>
+      <a
+        href="/projects"
+        class="px-6 py-3 bg-white text-gray-700 rounded-full font-medium border border-gray-200 hover:border-blue-400 hover:text-blue-500 transition-all duration-200 shadow-sm hover:shadow-md"
+      >
+        🚀 项目
+      </a>
+      <a
+        href="/about"
+        class="px-6 py-3 bg-white text-gray-700 rounded-full font-medium border border-gray-200 hover:border-blue-400 hover:text-blue-500 transition-all duration-200 shadow-sm hover:shadow-md"
+      >
+        👤 关于
+      </a>
+    </div>
+  </div>
+</BaseLayout>
