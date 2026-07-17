@@ -1,0 +1,44 @@
+---
+const navItems = [
+  { href: '/', label: '首页' },
+  { href: '/blog', label: '博客' },
+  { href: '/projects', label: '项目' },
+  { href: '/about', label: '关于' },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-100">
+  <div class="max-w-[1024px] mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="text-lg font-bold bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
+      CurryKernel
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-8">
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class={`text-sm font-medium transition-colors duration-200 hover:text-blue-500 ${
+            currentPath === item.href ? 'text-blue-500' : 'text-gray-600'
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button class="md:hidden text-gray-600" id="menu-toggle" aria-label="Toggle menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<script>
+  // Simple mobile menu toggle
+  const toggle = document.getElementById('menu-toggle');
+  // Inline mobile menu will be handled via Astro view transitions or a React island
+</script>
